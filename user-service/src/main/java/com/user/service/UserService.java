@@ -37,6 +37,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public boolean isUserExist(final String email) {
+        return userRepository.existByEmail(email);
+    }
+
     public User createUser(final User user) throws UserExistException {
         if(userRepository.existByEmail(user.getEmail())) {
             throw new UserExistException();

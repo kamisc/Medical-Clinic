@@ -34,13 +34,18 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Long id) {
+    public UserDto getUserById(@PathVariable Long id) throws UserNotExistException {
         return userMapper.mapToUserDto(userService.findUserById(id));
     }
 
     @GetMapping("/{email}")
     public UserDto getUserByEmail(@PathVariable String email) throws UserNotExistException {
         return userMapper.mapToUserDto(userService.findUserByEmail(email));
+    }
+
+    @GetMapping("/exist/{email}")
+    public boolean isUserExist(@PathVariable String email) {
+        return userService.isUserExist(email);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
