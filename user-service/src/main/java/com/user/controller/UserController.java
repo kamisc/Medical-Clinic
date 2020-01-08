@@ -1,5 +1,6 @@
 package com.user.controller;
 
+import com.user.domain.exception.UserNotExistException;
 import com.user.dto.UserDto;
 import com.user.mapper.UserMapper;
 import com.user.service.UserService;
@@ -32,8 +33,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getOneUserById(@PathVariable Long id) {
+    public UserDto getUserById(@PathVariable Long id) {
         return userMapper.mapToUserDto(userService.findUserById(id));
+    }
+
+    @GetMapping("/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) throws UserNotExistException {
+        return userMapper.mapToUserDto(userService.findUserByEmail(email));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

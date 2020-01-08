@@ -1,6 +1,7 @@
 package com.user.service;
 
 import com.user.domain.User;
+import com.user.domain.exception.UserNotExistException;
 import com.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,13 @@ public class UserService {
 
     public User findUserById(final Long id) {
         return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
+    public User findUserByEmail(final String email) throws UserNotExistException {
+        if(!userRepository.existByEmail(email)) {
+            throw new UserNotExistException();
+        }
+        return userRepository.findByEmail(email);
     }
 
     public User createUser(final User user) {
