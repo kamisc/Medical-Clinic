@@ -1,3 +1,4 @@
 rootProject.name = 'medical-clinic'
 include 'cloud'
 include 'discovery'
+include 'user-service'
