@@ -1,6 +1,7 @@
 package com.user.service;
 
 import com.user.domain.User;
+import com.user.domain.exception.UserExistException;
 import com.user.domain.exception.UserNotExistException;
 import com.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findUserById(final Long id) {
-        return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    public User findUserById(final Long id) throws UserNotExistException {
+        return userRepository.findById(id).orElseThrow(UserNotExistException::new);
     }
 
     public User findUserByEmail(final String email) throws UserNotExistException {
@@ -36,7 +37,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User createUser(final User user) {
+    public User createUser(final User user) throws UserExistException {
+        if(userRepository.existByEmail(user.getEmail())) {
+            throw new UserExistException();
+        }
         return userRepository.save(user);
     }
 
@@ -44,7 +48,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(final User user) {
+    public void deleteUser(final User user) throws UserNotExistException {
+        if(!userRepository.existByEmail(user.getEmail())) {
+            throw new UserNotExistException();
+        }
         userRepository.delete(user);
     }
 }

@@ -1,5 +1,6 @@
 package com.user.controller;
 
+import com.user.domain.exception.UserExistException;
 import com.user.domain.exception.UserNotExistException;
 import com.user.dto.UserDto;
 import com.user.mapper.UserMapper;
@@ -43,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody UserDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) throws UserExistException {
         userService.createUser(userMapper.mapToUser(userDto));
     }
 
@@ -53,7 +54,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestParam Long id) {
+    public void deleteUser(@RequestParam Long id) throws UserNotExistException {
         userService.deleteUser(userService.findUserById(id));
     }
 }
