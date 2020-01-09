@@ -31,18 +31,18 @@ public class UserService {
     }
 
     public User findUserByEmail(final String email) throws UserNotExistException {
-        if(!userRepository.existByEmail(email)) {
+        if(!userRepository.existsByEmail(email)) {
             throw new UserNotExistException();
         }
         return userRepository.findByEmail(email);
     }
 
     public boolean isUserExist(final String email) {
-        return userRepository.existByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     public User createUser(final User user) throws UserExistException {
-        if(userRepository.existByEmail(user.getEmail())) {
+        if(userRepository.existsByEmail(user.getEmail())) {
             throw new UserExistException();
         }
         return userRepository.save(user);
@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public void deleteUser(final User user) throws UserNotExistException {
-        if(!userRepository.existByEmail(user.getEmail())) {
+        if(!userRepository.existsByEmail(user.getEmail())) {
             throw new UserNotExistException();
         }
         userRepository.delete(user);

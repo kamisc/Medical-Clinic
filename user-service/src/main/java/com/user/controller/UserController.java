@@ -33,12 +33,12 @@ public class UserController {
         return userMapper.mapToUserDtoList(userService.findAllUsers());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public UserDto getUserById(@PathVariable Long id) throws UserNotExistException {
         return userMapper.mapToUserDto(userService.findUserById(id));
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public UserDto getUserByEmail(@PathVariable String email) throws UserNotExistException {
         return userMapper.mapToUserDto(userService.findUserByEmail(email));
     }
