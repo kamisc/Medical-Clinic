@@ -1,9 +1,12 @@
 package com.doctor.service;
 
 import com.doctor.domain.Doctor;
+import com.doctor.domain.exception.DoctorExistException;
+import com.doctor.domain.exception.DoctorNotExistException;
 import com.doctor.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.security.krb5.internal.crypto.dk.DkCrypto;
 
 import java.util.List;
 
@@ -24,11 +27,14 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Doctor findDoctorById(final Long id) {
-        return doctorRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    public Doctor findDoctorById(final Long id) throws DoctorNotExistException {
+        return doctorRepository.findById(id).orElseThrow(DoctorNotExistException::new);
     }
 
-    public Doctor findDoctorBySurname(final String surname) {
+    public Doctor findDoctorBySurname(final String surname) throws DoctorNotExistException {
+        if (!isDoctorExist(surname)) {
+            throw new DoctorNotExistException();
+        }
         return doctorRepository.findBySurname(surname);
     }
 
@@ -36,7 +42,10 @@ public class DoctorService {
         return doctorRepository.existsBySurname(surname);
     }
 
-    public Doctor createDoctor(final Doctor doctor) {
+    public Doctor createDoctor(final Doctor doctor) throws DoctorExistException {
+        if(doctorRepository.existsBySurname(doctor.getSurname())) {
+            throw new DoctorExistException();
+        }
         return doctorRepository.save(doctor);
     }
 
@@ -44,7 +53,10 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    public void deleteDoctor(final Doctor doctor) {
+    public void deleteDoctor(final Doctor doctor) throws DoctorNotExistException {
+        if(!doctorRepository.existsBySurname(doctor.getSurname())) {
+            throw new DoctorNotExistException();
+        }
         doctorRepository.delete(doctor);
     }
 }

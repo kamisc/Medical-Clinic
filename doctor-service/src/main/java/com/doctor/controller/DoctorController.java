@@ -1,5 +1,7 @@
 package com.doctor.controller;
 
+import com.doctor.domain.exception.DoctorExistException;
+import com.doctor.domain.exception.DoctorNotExistException;
 import com.doctor.dto.DoctorDto;
 import com.doctor.mapper.DoctorMapper;
 import com.doctor.service.DoctorService;
@@ -32,12 +34,12 @@ public class DoctorController {
     }
 
     @GetMapping("/id/{id}")
-    public DoctorDto getDoctorById(@PathVariable Long id) {
+    public DoctorDto getDoctorById(@PathVariable Long id) throws DoctorNotExistException {
         return doctorMapper.mapToDoctorDto(doctorService.findDoctorById(id));
     }
 
     @GetMapping("/surname/{surname}")
-    public DoctorDto getDoctorBySurname(@PathVariable String surname) {
+    public DoctorDto getDoctorBySurname(@PathVariable String surname) throws DoctorNotExistException {
         return doctorMapper.mapToDoctorDto(doctorService.findDoctorBySurname(surname));
     }
 
@@ -47,7 +49,7 @@ public class DoctorController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createDoctor(@RequestBody DoctorDto doctorDto) {
+    public void createDoctor(@RequestBody DoctorDto doctorDto) throws DoctorExistException {
         doctorService.createDoctor(doctorMapper.mapToDoctor(doctorDto));
     }
 
@@ -57,7 +59,7 @@ public class DoctorController {
     }
 
     @DeleteMapping
-    public void deleteDoctor(@RequestParam Long id) {
+    public void deleteDoctor(@RequestParam Long id) throws DoctorNotExistException {
         doctorService.deleteDoctor(doctorService.findDoctorById(id));
     }
 }
