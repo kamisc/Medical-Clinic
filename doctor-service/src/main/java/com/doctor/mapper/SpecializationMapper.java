@@ -2,6 +2,7 @@ package com.doctor.mapper;
 
 import com.doctor.domain.Specialization;
 import com.doctor.dto.SpecializationDto;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
  * Author Kamil Seweryn
  */
 
+@Component
 public class SpecializationMapper {
     public SpecializationDto mapToSpecializationDto(final Specialization specialization) {
         return new SpecializationDto(
