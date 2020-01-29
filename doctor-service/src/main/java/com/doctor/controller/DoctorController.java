@@ -53,7 +53,7 @@ public class DoctorController {
         doctorService.createDoctor(doctorMapper.mapToDoctor(doctorDto));
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(name = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public DoctorDto updateDoctor(@RequestBody DoctorDto doctorDto) {
         return doctorMapper.mapToDoctorDto(doctorService.updateDoctor(doctorMapper.mapToDoctor(doctorDto)));
     }

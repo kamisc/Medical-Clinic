@@ -1,12 +1,12 @@
 package com.doctor.service;
 
 import com.doctor.domain.Doctor;
+import com.doctor.domain.Specialization;
 import com.doctor.domain.exception.DoctorExistException;
 import com.doctor.domain.exception.DoctorNotExistException;
 import com.doctor.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.krb5.internal.crypto.dk.DkCrypto;
 
 import java.util.List;
 

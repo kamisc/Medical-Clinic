@@ -25,8 +25,7 @@ public class SpecializationDto {
         this.doctors = doctors;
     }
 
-    public SpecializationDto(Long id, String name) {
-        this.id = id;
+    public SpecializationDto(String name) {
         this.name = name;
     }
 

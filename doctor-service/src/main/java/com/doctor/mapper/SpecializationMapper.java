@@ -15,9 +15,7 @@ import java.util.stream.Collectors;
 public class SpecializationMapper {
     public SpecializationDto mapToSpecializationDto(final Specialization specialization) {
         return new SpecializationDto(
-                specialization.getId(),
-                specialization.getName(),
-                specialization.getDoctors()
+                specialization.getName()
         );
     }
 
