@@ -1,6 +1,8 @@
 package com.doctor.dto;
 
 import com.doctor.domain.Specialization;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
@@ -15,20 +17,22 @@ public class DoctorDto {
     private Long id;
     private String name;
     private String surname;
-    private Set<Specialization> specializations = new HashSet<>();
+    private Set<Specialization> specializations;
 
     public DoctorDto() {
     }
 
-    public DoctorDto(Long id, String name, String surname) {
+    public DoctorDto(Long id, String name, String surname, Set<Specialization> specializations) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.specializations = specializations;
     }
 
-    public DoctorDto(String name, String surname) {
+    public DoctorDto(String name, String surname, Set<Specialization> specializations) {
         this.name = name;
         this.surname = surname;
+        this.specializations = specializations;
     }
 
     public Long getId() {

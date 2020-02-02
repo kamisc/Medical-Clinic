@@ -1,5 +1,9 @@
 package com.doctor.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -29,7 +33,7 @@ public class Doctor {
     @Length(min = 3)
     private String surname;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "DOCTOR_SPECIALIZATION",
             joinColumns =  {@JoinColumn(name = "DOCTOR_ID")},
@@ -40,10 +44,10 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String name, String surname, Set<Specialization> specializations) {
+    public Doctor(String name, String surname /*Set<Specialization> specializations*/) {
         this.name = name;
         this.surname = surname;
-        this.specializations = specializations;
+        //this.specializations = specializations;
     }
 
     public Long getId() {
@@ -76,5 +80,27 @@ public class Doctor {
 
     public void setSpecializations(Set<Specialization> specializations) {
         this.specializations = specializations;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Doctor doctor = (Doctor) o;
+
+        if (!id.equals(doctor.id)) return false;
+        if (!name.equals(doctor.name)) return false;
+        if (!surname.equals(doctor.surname)) return false;
+        return specializations.equals(doctor.specializations);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + surname.hashCode();
+        result = 31 * result + specializations.hashCode();
+        return result;
     }
 }

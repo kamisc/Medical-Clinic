@@ -17,10 +17,12 @@ import java.util.List;
 @Service
 public class DoctorService {
     private DoctorRepository doctorRepository;
+    private SpecializationService specializationService;
 
     @Autowired
-    public DoctorService(DoctorRepository doctorRepository) {
+    public DoctorService(DoctorRepository doctorRepository, SpecializationService specializationService) {
         this.doctorRepository = doctorRepository;
+        this.specializationService = specializationService;
     }
 
     public List<Doctor> findAllDoctors() {
@@ -36,6 +38,13 @@ public class DoctorService {
             throw new DoctorNotExistException();
         }
         return doctorRepository.findBySurname(surname);
+    }
+
+    public Doctor addSpecializationToDoctor(final Long doctorId, final Long specializationId) throws DoctorNotExistException {
+        Specialization specialization = specializationService.findSpecializationById(specializationId);
+        Doctor doctor = findDoctorById(doctorId);
+        doctor.getSpecializations().add(specialization);
+        return doctor;
     }
 
     public boolean isDoctorExist(final String surname) {
