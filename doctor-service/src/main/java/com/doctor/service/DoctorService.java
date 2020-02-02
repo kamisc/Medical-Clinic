@@ -44,7 +44,6 @@ public class DoctorService {
         Specialization specialization = specializationService.findSpecializationById(specializationId);
         Doctor doctor = findDoctorById(doctorId);
         doctor.getSpecializations().add(specialization);
-        specialization.getDoctors().add(doctor);
         return doctor;
     }
 
