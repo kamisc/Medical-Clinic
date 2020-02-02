@@ -1,9 +1,5 @@
 package com.doctor.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -14,20 +10,19 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "SPECIALIZATIONS")
+@Table(name = "specializations")
 public class Specialization {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "SPECIALIZATION_ID", unique = true)
+    @Column(name = "specialization_id", unique = true)
     private Long id;
 
     @NotNull
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "specializations")
-    @JsonIgnore
     private Set<Doctor> doctors = new HashSet<>();
 
     public Specialization() {

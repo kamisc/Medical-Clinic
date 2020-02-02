@@ -1,9 +1,5 @@
 package com.doctor.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -16,13 +12,13 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "DOCTORS")
+@Table(name = "doctors")
 public class Doctor {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "DOCTOR_ID", unique = true)
+    @Column(name = "doctor_id", unique = true)
     private Long id;
 
     @NotNull
@@ -35,19 +31,19 @@ public class Doctor {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "DOCTOR_SPECIALIZATION",
-            joinColumns =  {@JoinColumn(name = "DOCTOR_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "SPECIALIZATION_ID")}
+            name = "doctor_specialization",
+            joinColumns =  {@JoinColumn(name = "doctor_id")},
+            inverseJoinColumns = {@JoinColumn(name = "specialization_id")}
     )
     private Set<Specialization> specializations = new HashSet<>();
 
     public Doctor() {
     }
 
-    public Doctor(String name, String surname /*Set<Specialization> specializations*/) {
+    public Doctor(String name, String surname, Set<Specialization> specializations) {
         this.name = name;
         this.surname = surname;
-        //this.specializations = specializations;
+        this.specializations = specializations;
     }
 
     public Long getId() {

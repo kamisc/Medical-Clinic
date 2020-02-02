@@ -1,11 +1,8 @@
 package com.doctor.dto;
 
 import com.doctor.domain.Specialization;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**

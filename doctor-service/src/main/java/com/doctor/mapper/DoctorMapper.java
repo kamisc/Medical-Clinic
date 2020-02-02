@@ -30,8 +30,8 @@ public class DoctorMapper {
     public Doctor mapToDoctor(final DoctorDto doctorDto) {
         Doctor doctor = new Doctor(
                 doctorDto.getName(),
-                doctorDto.getSurname()
-                //doctorDto.getSpecializations()
+                doctorDto.getSurname(),
+                doctorDto.getSpecializations()
         );
         doctor.setId(doctorDto.getId());
         return doctor;

@@ -20,7 +20,9 @@ public class SpecializationMapper {
     }
 
     public Specialization mapToSpecialization(final SpecializationDto specializationDto) {
-        return new Specialization(specializationDto.getName());
+        return new Specialization(
+                specializationDto.getName()
+        );
     }
 
     public List<SpecializationDto> mapToSpecializationDtoList(final List<Specialization> specializations) {

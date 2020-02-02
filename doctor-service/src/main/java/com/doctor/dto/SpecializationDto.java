@@ -14,7 +14,7 @@ public class SpecializationDto {
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Long id;
     private String name;
-    //private Set<Doctor> doctors = new HashSet<>();
+    private Set<Doctor> doctors = new HashSet<>();
 
     public SpecializationDto() {
     }
@@ -22,7 +22,7 @@ public class SpecializationDto {
     public SpecializationDto(Long id, String name, Set<Doctor> doctors) {
         this.id = id;
         this.name = name;
-       // this.doctors = doctors;
+        this.doctors = doctors;
     }
 
     public SpecializationDto(String name) {
@@ -37,10 +37,10 @@ public class SpecializationDto {
         return name;
     }
 
-  /*  public Set<Doctor> getDoctors() {
+    public Set<Doctor> getDoctors() {
         return doctors;
     }
-*/
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -49,7 +49,7 @@ public class SpecializationDto {
         this.name = name;
     }
 
-    /*public void setDoctors(Set<Doctor> doctors) {
+    public void setDoctors(Set<Doctor> doctors) {
         this.doctors = doctors;
-    }*/
+    }
 }
