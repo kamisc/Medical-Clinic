@@ -32,7 +32,7 @@ public class UserService {
 
     public User findUserByEmail(final String email) throws UserNotExistException {
         if(!userRepository.existsByEmail(email)) {
-            throw new UserNotExistException();
+            throw new UserNotExistException(email);
         }
         return userRepository.findByEmail(email);
     }
@@ -43,7 +43,7 @@ public class UserService {
 
     public User createUser(final User user) throws UserExistException {
         if(userRepository.existsByEmail(user.getEmail())) {
-            throw new UserExistException();
+            throw new UserExistException(user.getEmail());
         }
         return userRepository.save(user);
     }
@@ -54,7 +54,7 @@ public class UserService {
 
     public void deleteUser(final User user) throws UserNotExistException {
         if(!userRepository.existsByEmail(user.getEmail())) {
-            throw new UserNotExistException();
+            throw new UserNotExistException(user.getEmail());
         }
         userRepository.delete(user);
     }

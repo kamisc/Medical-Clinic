@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "This user dosen't exist in the database!")
 public class UserNotExistException extends Exception {
     public UserNotExistException() {
-        super("This user dosen't exist in the database!");
+        super("This dosen't exist in the database!");
+    }
+
+    public UserNotExistException(String email) {
+        super("User with e-mail: " + email + " dosen't exist in the database!");
     }
 }
