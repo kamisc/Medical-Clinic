@@ -1,5 +1,7 @@
 package com.doctor.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -23,6 +25,7 @@ public class Specialization {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "specializations")
+    @JsonBackReference
     private Set<Doctor> doctors = new HashSet<>();
 
     public Specialization() {
@@ -64,15 +67,13 @@ public class Specialization {
         Specialization that = (Specialization) o;
 
         if (!id.equals(that.id)) return false;
-        if (!name.equals(that.name)) return false;
-        return doctors.equals(that.doctors);
+        return name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + doctors.hashCode();
         return result;
     }
 }

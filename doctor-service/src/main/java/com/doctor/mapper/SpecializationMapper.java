@@ -29,8 +29,7 @@ public class SpecializationMapper {
         return specializations.stream()
                 .map(specialization -> new SpecializationDto(
                         specialization.getId(),
-                        specialization.getName(),
-                        specialization.getDoctors()))
+                        specialization.getName()))
                 .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package com.doctor.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -35,6 +37,8 @@ public class Doctor {
             joinColumns =  {@JoinColumn(name = "doctor_id")},
             inverseJoinColumns = {@JoinColumn(name = "specialization_id")}
     )
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Specialization> specializations = new HashSet<>();
 
     public Doctor() {
@@ -87,8 +91,7 @@ public class Doctor {
 
         if (!id.equals(doctor.id)) return false;
         if (!name.equals(doctor.name)) return false;
-        if (!surname.equals(doctor.surname)) return false;
-        return specializations.equals(doctor.specializations);
+        return surname.equals(doctor.surname);
     }
 
     @Override
@@ -96,7 +99,6 @@ public class Doctor {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + surname.hashCode();
-        result = 31 * result + specializations.hashCode();
         return result;
     }
 }
