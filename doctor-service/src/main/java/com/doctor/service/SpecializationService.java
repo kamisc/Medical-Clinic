@@ -1,6 +1,9 @@
 package com.doctor.service;
 
 import com.doctor.domain.Specialization;
+import com.doctor.domain.exception.CantDeleteSpecializationException;
+import com.doctor.domain.exception.SpecializationExistException;
+import com.doctor.domain.exception.SpecializationNotExistException;
 import com.doctor.repository.SpecializationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,21 @@ public class SpecializationService {
         return specializationRepository.findAll();
     }
 
-    public Specialization findSpecializationById(final Long id) {
-        return specializationRepository.findById(id).orElseThrow(IllegalStateException::new);
+    public Specialization findSpecializationById(final Long id) throws SpecializationNotExistException {
+        return specializationRepository.findById(id).orElseThrow(SpecializationNotExistException::new);
     }
 
-    public Specialization addSpecialization(final Specialization specialization) {
+    public Specialization addSpecialization(final Specialization specialization) throws SpecializationExistException {
+        if (specializationRepository.existsByName(specialization.getName())) {
+            throw new SpecializationExistException(specialization.getName());
+        }
         return specializationRepository.save(specialization);
     }
 
-    public void deleteSpecialization(final Specialization specialization) {
+    public void deleteSpecialization(final Specialization specialization) throws CantDeleteSpecializationException {
+        if (!specialization.getDoctors().isEmpty()) {
+            throw new CantDeleteSpecializationException(specialization.getName());
+        }
         specializationRepository.delete(specialization);
     }
 }

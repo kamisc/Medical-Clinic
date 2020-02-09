@@ -31,7 +31,7 @@ public class Doctor {
     @Length(min = 3)
     private String surname;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "doctor_specialization",
             joinColumns =  {@JoinColumn(name = "doctor_id")},

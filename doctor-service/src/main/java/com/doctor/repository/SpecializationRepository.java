@@ -27,4 +27,6 @@ public interface SpecializationRepository extends JpaRepository<Specialization, 
 
     @Override
     void delete(Specialization specialization);
+
+    boolean existsByName(String name);
 }

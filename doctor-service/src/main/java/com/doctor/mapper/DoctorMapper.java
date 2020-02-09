@@ -16,12 +16,10 @@ import java.util.stream.Collectors;
 @Component
 public class DoctorMapper {
     public DoctorDto mapToDoctorDto(final Doctor doctor) {
-        Set<Specialization> specializations = doctor.getSpecializations();
-
         DoctorDto doctorDto = new DoctorDto(
                 doctor.getName(),
                 doctor.getSurname(),
-                specializations
+                doctor.getSpecializations()
         );
         doctorDto.setId(doctor.getId());
         return doctorDto;

@@ -4,6 +4,7 @@ import com.doctor.domain.Doctor;
 import com.doctor.domain.Specialization;
 import com.doctor.domain.exception.DoctorExistException;
 import com.doctor.domain.exception.DoctorNotExistException;
+import com.doctor.domain.exception.SpecializationNotExistException;
 import com.doctor.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,12 @@ public class DoctorService {
 
     public Doctor findDoctorBySurname(final String surname) throws DoctorNotExistException {
         if (!isDoctorExist(surname)) {
-            throw new DoctorNotExistException();
+            throw new DoctorNotExistException(surname);
         }
         return doctorRepository.findBySurname(surname);
     }
 
-    public Doctor addSpecializationToDoctor(final Long doctorId, final Long specializationId) throws DoctorNotExistException {
+    public Doctor addSpecializationToDoctor(final Long doctorId, final Long specializationId) throws DoctorNotExistException, SpecializationNotExistException {
         Specialization specialization = specializationService.findSpecializationById(specializationId);
         Doctor doctor = findDoctorById(doctorId);
         doctor.getSpecializations().add(specialization);
@@ -53,7 +54,7 @@ public class DoctorService {
 
     public Doctor createDoctor(final Doctor doctor) throws DoctorExistException {
         if(doctorRepository.existsBySurname(doctor.getSurname())) {
-            throw new DoctorExistException();
+            throw new DoctorExistException(doctor.getSurname());
         }
         return doctorRepository.save(doctor);
     }
@@ -64,7 +65,7 @@ public class DoctorService {
 
     public void deleteDoctor(final Doctor doctor) throws DoctorNotExistException {
         if(!doctorRepository.existsBySurname(doctor.getSurname())) {
-            throw new DoctorNotExistException();
+            throw new DoctorNotExistException(doctor.getSurname());
         }
         doctorRepository.delete(doctor);
     }

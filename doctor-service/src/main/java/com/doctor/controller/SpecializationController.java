@@ -1,5 +1,8 @@
 package com.doctor.controller;
 
+import com.doctor.domain.exception.CantDeleteSpecializationException;
+import com.doctor.domain.exception.SpecializationExistException;
+import com.doctor.domain.exception.SpecializationNotExistException;
 import com.doctor.dto.SpecializationDto;
 import com.doctor.mapper.SpecializationMapper;
 import com.doctor.service.SpecializationService;
@@ -32,12 +35,12 @@ public class SpecializationController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addSpecialization(@RequestBody SpecializationDto specializationDto) {
+    public void addSpecialization(@RequestBody SpecializationDto specializationDto) throws SpecializationExistException {
         specializationService.addSpecialization(specializationMapper.mapToSpecialization(specializationDto));
     }
 
     @DeleteMapping
-    public void deleteSpecialization(@RequestParam Long id) {
+    public void deleteSpecialization(@RequestParam Long id) throws CantDeleteSpecializationException, SpecializationNotExistException {
         specializationService.deleteSpecialization(specializationService.findSpecializationById(id));
     }
 }

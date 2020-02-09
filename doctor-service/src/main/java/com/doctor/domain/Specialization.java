@@ -24,7 +24,7 @@ public class Specialization {
     @NotNull
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "specializations")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "specializations")
     @JsonBackReference
     private Set<Doctor> doctors = new HashSet<>();
 
