@@ -30,13 +30,17 @@ public class Visit {
     @NotNull
     private Long userId;
 
+    @NotNull
+    private Long doctorId;
+
     public Visit() {
     }
 
-    public Visit(Date date, String description, Long userId) {
+    public Visit(Date date, String description, Long userId, Long doctorId) {
         this.date = date;
         this.description = description;
         this.userId = userId;
+        this.doctorId = doctorId;
     }
 
     public Long getId() {
@@ -55,6 +59,10 @@ public class Visit {
         return userId;
     }
 
+    public Long getDoctorId() {
+        return doctorId;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -67,8 +75,12 @@ public class Visit {
         this.description = description;
     }
 
-    public void setUSerId(Long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
     }
 
     @Override
@@ -81,7 +93,8 @@ public class Visit {
         if (!id.equals(visit.id)) return false;
         if (!date.equals(visit.date)) return false;
         if (!description.equals(visit.description)) return false;
-        return userId.equals(visit.userId);
+        if (!userId.equals(visit.userId)) return false;
+        return doctorId.equals(visit.doctorId);
     }
 
     @Override
@@ -90,6 +103,7 @@ public class Visit {
         result = 31 * result + date.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + userId.hashCode();
+        result = 31 * result + doctorId.hashCode();
         return result;
     }
 }

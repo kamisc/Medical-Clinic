@@ -15,21 +15,24 @@ public class VisitDto {
     private Date date;
     private String description;
     private Long userId;
+    private Long doctorId;
 
     public VisitDto() {
     }
 
-    public VisitDto(Long id, Date date, String description, Long userId) {
+    public VisitDto(Long id, Date date, String description, Long userId, Long doctorId) {
         this.id = id;
         this.date = date;
         this.description = description;
         this.userId = userId;
+        this.doctorId = doctorId;
     }
 
-    public VisitDto(Date date, String description, Long userId) {
+    public VisitDto(Date date, String description, Long userId, Long doctorId) {
         this.date = date;
         this.description = description;
         this.userId = userId;
+        this.doctorId = doctorId;
     }
 
     public Long getId() {
@@ -48,6 +51,10 @@ public class VisitDto {
         return userId;
     }
 
+    public Long getDoctorId() {
+        return doctorId;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -62,5 +69,9 @@ public class VisitDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
     }
 }
