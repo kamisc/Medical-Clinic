@@ -27,4 +27,7 @@ public interface VisitRepository extends JpaRepository<Visit, Long> {
 
     @Override
     void delete(Visit visit);
+
+    @Override
+    boolean existsById(Long id);
 }
