@@ -27,12 +27,12 @@ public class VisitController {
         this.visitMapper = visitMapper;
     }
 
-    @GetMapping("user/{userId}")
+    @GetMapping("/user/{userId}")
     public List<VisitDto> getAllVisitsByUserId(@PathVariable Long userId) {
         return visitMapper.mapToVisitDtoList(visitService.findAllVisitsByUserId(userId));
     }
 
-    @GetMapping("doctor/{doctorId}")
+    @GetMapping("/doctor/{doctorId}")
     public List<VisitDto> getAllVisitsByDoctorId(@PathVariable Long doctorId) {
         return visitMapper.mapToVisitDtoList(visitService.findAllVisitsByDoctorId(doctorId));
     }

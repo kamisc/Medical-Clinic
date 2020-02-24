@@ -39,6 +39,6 @@ public class VisitService {
         if(!visitRepository.existsById(visit.getId())) {
             throw new VisitNotExistException();
         }
-        deleteVisit(visit);
+        visitRepository.delete(visit);
     }
 }
