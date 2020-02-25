@@ -56,9 +56,8 @@ public class UserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateUser(@RequestBody UserDto userDto) {
-        userMapper.mapToUserDto(userService.updateUser(userMapper.mapToUser(userDto)));
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return userMapper.mapToUserDto(userService.updateUser(userMapper.mapToUser(userDto)));
     }
 
     @DeleteMapping
