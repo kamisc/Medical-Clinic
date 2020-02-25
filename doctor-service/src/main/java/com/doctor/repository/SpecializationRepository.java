@@ -15,7 +15,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface SpecializationRepository extends JpaRepository<Specialization, Long> {
-
     @Override
     List<Specialization> findAll();
 

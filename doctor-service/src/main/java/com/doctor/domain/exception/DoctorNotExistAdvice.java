@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class DoctorNotExistAdvice {
-
     @ExceptionHandler(DoctorNotExistException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String doctorNotExistHandler(DoctorNotExistException ex) {

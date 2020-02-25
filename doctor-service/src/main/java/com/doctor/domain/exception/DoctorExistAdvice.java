@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class DoctorExistAdvice {
-
     @ExceptionHandler(DoctorExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String doctorExistHandler(DoctorExistException ex) {

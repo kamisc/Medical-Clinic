@@ -5,7 +5,6 @@ package com.doctor.domain.exception;
  */
 
 public class SpecializationNotExistException extends Exception {
-
     public SpecializationNotExistException() {
         super("This specialization doesn't exist in the database!");
     }

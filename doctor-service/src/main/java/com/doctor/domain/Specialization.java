@@ -1,6 +1,7 @@
 package com.doctor.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,7 @@ public class Specialization {
     private Long id;
 
     @NotNull
+    @Length(min = 3)
     private String name;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "specializations")

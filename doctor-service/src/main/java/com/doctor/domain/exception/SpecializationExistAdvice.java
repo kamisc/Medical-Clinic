@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class SpecializationExistAdvice {
-
     @ExceptionHandler(SpecializationExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String specializationExistHandler(SpecializationExistException ex) {

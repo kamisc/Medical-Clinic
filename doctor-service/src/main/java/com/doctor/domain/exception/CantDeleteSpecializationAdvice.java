@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class CantDeleteSpecializationAdvice {
-
     @ExceptionHandler(CantDeleteSpecializationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String cantDeleteSpecializationHandler(CantDeleteSpecializationException ex) {

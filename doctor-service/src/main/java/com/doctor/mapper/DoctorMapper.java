@@ -1,12 +1,10 @@
 package com.doctor.mapper;
 
 import com.doctor.domain.Doctor;
-import com.doctor.domain.Specialization;
 import com.doctor.dto.DoctorDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
