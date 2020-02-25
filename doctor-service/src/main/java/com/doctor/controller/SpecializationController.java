@@ -7,6 +7,7 @@ import com.doctor.dto.SpecializationDto;
 import com.doctor.mapper.SpecializationMapper;
 import com.doctor.service.SpecializationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class SpecializationController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public void addSpecialization(@RequestBody SpecializationDto specializationDto) throws SpecializationExistException {
         specializationService.addSpecialization(specializationMapper.mapToSpecialization(specializationDto));
     }
