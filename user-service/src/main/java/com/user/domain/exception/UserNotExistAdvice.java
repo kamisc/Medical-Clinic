@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class UserNotExistAdvice {
-
     @ExceptionHandler(UserNotExistException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String userNotExistHandler(UserNotExistException ex) {

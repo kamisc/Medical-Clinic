@@ -17,7 +17,6 @@ public class User {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true)
     private Long id;
 
     @NotNull

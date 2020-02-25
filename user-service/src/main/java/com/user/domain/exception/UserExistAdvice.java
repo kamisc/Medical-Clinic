@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class UserExistAdvice {
-
     @ExceptionHandler(UserExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String userExistHandler(UserExistException ex) {

@@ -6,6 +6,7 @@ import com.user.dto.UserDto;
 import com.user.mapper.UserMapper;
 import com.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,13 +50,15 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody UserDto userDto) throws UserExistException {
         userService.createUser(userMapper.mapToUser(userDto));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserDto updateUser(@RequestBody UserDto userDto) {
-        return userMapper.mapToUserDto(userService.updateUser(userMapper.mapToUser(userDto)));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@RequestBody UserDto userDto) {
+        userMapper.mapToUserDto(userService.updateUser(userMapper.mapToUser(userDto)));
     }
 
     @DeleteMapping
