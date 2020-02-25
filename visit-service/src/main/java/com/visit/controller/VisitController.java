@@ -5,6 +5,7 @@ import com.visit.dto.VisitDto;
 import com.visit.mapper.VisitMapper;
 import com.visit.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,7 @@ public class VisitController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public void createVisit(@RequestBody VisitDto visitDto) {
         visitService.createVisit(visitMapper.mapToVisit(visitDto));
     }

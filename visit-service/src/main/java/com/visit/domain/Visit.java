@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -25,6 +26,7 @@ public class Visit {
     private Date date = new Date();
 
     @NotNull
+    @Size(max = 8192)
     private String description;
 
     @NotNull
