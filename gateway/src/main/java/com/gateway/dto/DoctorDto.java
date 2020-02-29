@@ -2,6 +2,9 @@ package com.gateway.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Author Kamil Seweryn
  */
@@ -11,6 +14,7 @@ public class DoctorDto {
     private Long id;
     private String name;
     private String surname;
+    private List<VisitDto> visitDtoList = new ArrayList<>();
 
     public DoctorDto() {
     }
@@ -36,6 +40,10 @@ public class DoctorDto {
 
     public String getSurname() {
         return surname;
+    }
+
+    public List<VisitDto> getVisitDtoList() {
+        return visitDtoList;
     }
 
     public void setId(Long id) {
