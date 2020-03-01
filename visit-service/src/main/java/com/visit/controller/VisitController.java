@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/visits")
+@RequestMapping
 public class VisitController {
     private VisitService visitService;
     private VisitMapper visitMapper;
