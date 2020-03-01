@@ -1,7 +1,5 @@
 package com.gateway.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,6 @@ import java.util.List;
  */
 
 public class UserDto {
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Long id;
     private String name;
     private String surname;
@@ -19,28 +16,6 @@ public class UserDto {
     private String password;
     private Role role;
     private final List<VisitDto> visitDtoList = new ArrayList<>();
-
-    public UserDto() {
-    }
-
-    public UserDto(Long id, String name, String surname, String email, Integer phoneNumber, String password, Role role) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.role = role;
-    }
-
-    public UserDto(String name, String surname, String email, Integer phoneNumber, String password, Role role) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.role = role;
-    }
 
     public Long getId() {
         return id;

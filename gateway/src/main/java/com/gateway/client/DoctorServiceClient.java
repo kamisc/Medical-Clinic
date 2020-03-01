@@ -2,7 +2,6 @@ package com.gateway.client;
 
 import com.gateway.dto.DoctorDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,8 +13,6 @@ import org.springframework.web.client.RestTemplate;
 public class DoctorServiceClient {
 
     private final RestTemplate restTemplate;
-
-    private HttpHeaders headers = new HttpHeaders();
 
     @Autowired
     public DoctorServiceClient(RestTemplate restTemplate) {

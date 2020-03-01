@@ -1,7 +1,5 @@
 package com.gateway.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
 
 /**
@@ -9,30 +7,11 @@ import java.util.Date;
  */
 
 public class VisitDto {
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Long id;
     private Date date;
     private String description;
     private Long userId;
     private Long doctorId;
-
-    public VisitDto() {
-    }
-
-    public VisitDto(Long id, Date date, String description, Long userId, Long doctorId) {
-        this.id = id;
-        this.date = date;
-        this.description = description;
-        this.userId = userId;
-        this.doctorId = doctorId;
-    }
-
-    public VisitDto(Date date, String description, Long userId, Long doctorId) {
-        this.date = date;
-        this.description = description;
-        this.userId = userId;
-        this.doctorId = doctorId;
-    }
 
     public Long getId() {
         return id;

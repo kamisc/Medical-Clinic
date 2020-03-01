@@ -2,7 +2,6 @@ package com.gateway.client;
 
 import com.gateway.dto.VisitDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,8 +17,6 @@ import java.util.stream.Stream;
 public class VisitServiceClient {
 
     private final RestTemplate restTemplate;
-
-    private HttpHeaders headers = new HttpHeaders();
 
     @Autowired
     public VisitServiceClient(RestTemplate restTemplate) {
