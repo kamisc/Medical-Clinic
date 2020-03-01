@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/doctors")
+@RequestMapping
 public class DoctorController {
     private DoctorService doctorService;
     private DoctorMapper doctorMapper;
