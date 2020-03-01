@@ -22,7 +22,7 @@ public class DoctorServiceClient {
     public DoctorDto getOneDoctor(final Long doctorId) {
         return restTemplate
                 .getForObject(
-                        "http://localhost:8080/doctors/doctors/id/" + doctorId,
+                        "http://localhost:8080/doctors/id/" + doctorId,
                         DoctorDto.class);
     }
 }

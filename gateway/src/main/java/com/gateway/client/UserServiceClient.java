@@ -22,7 +22,7 @@ public class UserServiceClient {
     public UserDto getOneUser(final Long userId) {
         return restTemplate
                 .getForObject(
-                        "http://localhost:8080/users/users/id/" + userId,
+                        "http://localhost:8080/users/id/" + userId,
                         UserDto.class);
     }
 }

@@ -25,14 +25,14 @@ public class VisitServiceClient {
 
     public List<VisitDto> getVistisForOneUser(final Long userId) {
         VisitDto[] response = restTemplate.getForObject(
-                "http://localhost:8080/visits/visits/user/" + userId,
+                "http://localhost:8080/visits/user/" + userId,
                 VisitDto[].class);
         return Stream.of(response).collect(Collectors.toList());
     }
 
     public List<VisitDto> getVistisForOneDoctor(final Long doctorId) {
         VisitDto[] response = restTemplate.getForObject(
-                "http://localhost:8080/visits/visits/doctor/" + doctorId,
+                "http://localhost:8080/visits/doctor/" + doctorId,
                 VisitDto[].class);
         return Stream.of(response).collect(Collectors.toList());
     }
